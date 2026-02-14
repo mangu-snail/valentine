@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compatibility Check 💘</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        #loadingText {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        #percentage {
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        #result {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .buttons {
+            display: none;
+            margin-top: 30px;
+            position: relative;
+            width: 100%;
+            height: 200px;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        #yesBtn {
+            background-color: white;
+            color: #ff4d6d;
+            left: 30%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #noBtn {
+            background-color: #333;
+            color: white;
+            left: 70%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: black;
+            padding: 25px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 320px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        #popup img {
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        #popup h2 {
+            margin-top: 0;
+            color: #ff4d6d;
+        }
+@keyframes shake {
+    0% { transform: translate(0px, 0px); }
+    20% { transform: translate(-10px, 5px); }
+    40% { transform: translate(10px, -5px); }
+    60% { transform: translate(-10px, 5px); }
+    80% { transform: translate(10px, -5px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+.shake {
+    animation: shake 0.5s ease;
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div id="loadingText">Checking compatibility with ANAGHA... 💭</div>
+    <div id="percentage">0%</div>
+
+    <div id="result">
+        <h2>❤️ 100% MATCH ❤️</h2>
+        <p>Will you be my Valentine?</p>
+    </div>
+
+    <div class="buttons">
+        <button id="yesBtn">YES 💘</button>
+        <button id="noBtn">NO 🙈</button>
+    </div>
+</div>
+
+<div id="popup">
+    <h2>YAAAY ANAGHA!!! 🥰</h2>
+    <p>You just made me the happiest man alive ❤️</p>
+    <p>Now come back tomorrow… with lemon rice paste.</p>
+    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3M4eGk4Z3NjYWNlOGplMHNmaXJzdnJwaHpqYWY1bHZ4NW1lZGtkZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VJloBpDk34yxB39V15/giphy.gif" alt="cute cat">
+</div>
+<script>
+    let percent = 0;
+    const percentage = document.getElementById("percentage");
+    const loadingText = document.getElementById("loadingText");
+    const result = document.getElementById("result");
+    const buttons = document.querySelector(".buttons");
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const popup = document.getElementById("popup");
+
+    const interval = setInterval(() => {
+        percent++;
+        percentage.innerText = percent + "%";
+
+        if (percent === 30) loadingText.innerText = "Analyzing vibes... ✨";
+        if (percent === 60) loadingText.innerText = "Matching heart frequency... ❤️";
+        if (percent === 85) loadingText.innerText = "Almost there... 😌";
+
+        if (percent >= 100) {
+            clearInterval(interval);
+            loadingText.style.display = "none";
+            percentage.style.display = "none";
+            result.style.display = "block";
+            buttons.style.display = "block";
+        }
+    }, 40);
+
+    function moveNoButton() {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        moveNoButton();
+    });
+
+    // 🎉 Celebration Effect
+    function createConfetti() {
+        for (let i = 0; i < 80; i++) {
+            const confetti = document.createElement("div");
+            confetti.style.position = "fixed";
+            confetti.style.width = "8px";
+            confetti.style.height = "8px";
+            confetti.style.backgroundColor = 
+                "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+            confetti.style.top = "-10px";
+            confetti.style.left = Math.random() * window.innerWidth + "px";
+            confetti.style.opacity = Math.random();
+            confetti.style.borderRadius = "50%";
+            confetti.style.transition = "transform 2s linear, top 2s linear";
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.style.top = window.innerHeight + "px";
+                confetti.style.transform = 
+                    "translateX(" + (Math.random() * 200 - 100) + "px)";
+            }, 10);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 2000);
+        }
+    }
+
+    // 💥 Firecracker burst
+    function createBurst() {
+        for (let i = 0; i < 40; i++) {
+            const spark = document.createElement("div");
+            spark.style.position = "fixed";
+            spark.style.width = "6px";
+            spark.style.height = "6px";
+            spark.style.backgroundColor = 
+                "hsl(" + Math.random() * 360 + ", 100%, 60%)";
+            spark.style.borderRadius = "50%";
+            spark.style.left = window.innerWidth / 2 + "px";
+            spark.style.top = window.innerHeight / 2 + "px";
+            spark.style.transition = "all 1s ease-out";
+            document.body.appendChild(spark);
+
+            setTimeout(() => {
+                spark.style.left = 
+                    (window.innerWidth / 2 + (Math.random() * 300 - 150)) + "px";
+                spark.style.top = 
+                    (window.innerHeight / 2 + (Math.random() * 300 - 150)) + "px";
+                spark.style.opacity = 0;
+            }, 10);
+
+            setTimeout(() => {
+                spark.remove();
+            }, 1000);
+        }
+    }
+
+    yesBtn.addEventListener("click", function() {
+    popup.style.display = "block";
+    createConfetti();
+    createBurst();
+
+    // 💥 Screen Shake
+    document.body.classList.add("shake");
+
+    setTimeout(() => {
+        document.body.classList.remove("shake");
+    }, 500);
+});
+
+</script>
+
+
+
+</body>
+</html>
